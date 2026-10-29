@@ -1,8 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
-from flake8.main import options
-
 
 class Validator(ABC):
     def __set__name__(self, owner: type, name: str) -> None:
@@ -14,6 +12,7 @@ class Validator(ABC):
         return getattr(instance, self.protected_name)
 
     def __set__(self, instance: Any, value: Any) -> None:
+        self.validate(value)
         setattr(instance, self.protected_name, value)
 
     @abstractmethod
