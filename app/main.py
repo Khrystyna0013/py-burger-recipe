@@ -3,7 +3,7 @@ from typing import Any
 
 
 class Validator(ABC):
-    def __set__name__(self, owner: type, name: str) -> None:
+    def __set_name__(self, owner: type, name: str) -> None:
         self.protected_name = "_" + name
 
     def __get__(self, instance: Any, owner: type) -> Any:
