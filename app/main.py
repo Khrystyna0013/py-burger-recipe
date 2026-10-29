@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
+from flake8.main import options
+
 
 class Validator(ABC):
     def __set__name__(self, owner: type, name: str) -> None:
@@ -36,7 +38,7 @@ class Number(Validator):
 
 
 class OneOf(Validator):
-    def __init__(self, options: tuple[str]) -> None:
+    def __init__(self, *options: str) -> None:
         self.options = options
 
     def validate(self, value: str) -> None:
